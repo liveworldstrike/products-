@@ -53,10 +53,8 @@ public class StockManager
                 productoQueEncuentra = producto;
 
             }
-          
         }
         return productoQueEncuentra;
-       
     }
 
     /**
@@ -68,7 +66,13 @@ public class StockManager
      */
     public int numberInStock(int id)
     {
-        return 0;
+        int numeroDelproductoQueEncuentra = 0 ;
+        for(Product  producto : stock){
+            if( producto.getID()== id){ 
+                numeroDelproductoQueEncuentra = producto.getQuantity();
+            }
+        }
+        return numeroDelproductoQueEncuentra;
     }
 
     /**
