@@ -11,6 +11,7 @@ public class StockManager
 {
     // A list of the products.
     private ArrayList<Product> stock;
+    
 
     /**
      * Initialise the stock manager.
@@ -37,15 +38,12 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
-        for(Product  producto : stock){
-            if( producto.getID()== id){
-                
-                producto.increaseQuantity(amount);
-
-            }
-            else{
-                System.out.println("el producto al que quiere darle una cantidad no existe");
-            }
+        Product producto = findProduct(id);
+        if (producto == null){
+            System.out.println("el producto al que quiere darle una cantidad no existe");
+        }
+        else{
+             producto.increaseQuantity(amount);
         }
     }
 
@@ -61,6 +59,8 @@ public class StockManager
             if( producto.getID()== id){
                 
                 productoQueEncuentra = producto;
+                
+                
 
             }
         }
