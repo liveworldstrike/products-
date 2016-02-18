@@ -37,6 +37,16 @@ public class StockManager
      */
     public void delivery(int id, int amount)
     {
+        for(Product  producto : stock){
+            if( producto.getID()== id){
+                
+                producto.increaseQuantity(amount);
+
+            }
+            else{
+                System.out.println("el producto al que quiere darle una cantidad no existe");
+            }
+        }
     }
 
     /**
