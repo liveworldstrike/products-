@@ -26,7 +26,12 @@ public class StockManager
      */
     public void addProduct(Product item)
     {
-        stock.add(item);
+        Product producto = findProduct(item.getID());
+        if(producto == null){
+            stock.add(item);
+        }
+        else{System.out.println("ERROR el id de producto no esta disponible ");
+        }
     }
 
     /**
