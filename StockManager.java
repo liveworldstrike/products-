@@ -11,7 +11,6 @@ public class StockManager
 {
     // A list of the products.
     private ArrayList<Product> stock;
-    
 
     /**
      * Initialise the stock manager.
@@ -39,11 +38,11 @@ public class StockManager
     public void delivery(int id, int amount)
     {
         Product producto = findProduct(id);
-        if (producto == null){
-            System.out.println("el producto al que quiere darle una cantidad no existe");
+        if(producto != null){
+            producto.increaseQuantity(amount);
         }
         else{
-             producto.increaseQuantity(amount);
+            System.out.println("El id indicado no pertenece a ningun producto");
         }
     }
 
@@ -54,17 +53,18 @@ public class StockManager
      */
     public Product findProduct(int id)
     {
-        Product productoQueEncuentra = null ;
-        for(Product  producto : stock){
-            if( producto.getID()== id){
-                
-                productoQueEncuentra = producto;
-                
-                
-
+        Product producto = null;
+        int index = 0;
+        boolean encontrado = false;
+        while(!encontrado && index < stock.size()) {
+            if (stock.get(index).getID() == id) {
+                producto = stock.get(index);
+                encontrado = true;
             }
+            index++;
         }
-        return productoQueEncuentra;
+
+        return producto; 
     }
 
     /**
@@ -76,13 +76,12 @@ public class StockManager
      */
     public int numberInStock(int id)
     {
-        int numeroDelproductoQueEncuentra = 0 ;
-        for(Product  producto : stock){
-            if( producto.getID()== id){ 
-                numeroDelproductoQueEncuentra = producto.getQuantity();
-            }
+        int cantidad = 0;
+        Product producto = findProduct(id); 
+        if (producto != null) {
+            cantidad = producto.getQuantity();
         }
-        return numeroDelproductoQueEncuentra;
+        return cantidad;
     }
 
     /**
@@ -94,5 +93,20 @@ public class StockManager
             System.out.println(productoDetalles);
         }
 
+    }
+
+    /**
+     * metodo para saber que productos estan por debajo en el strock
+     */
+    public void underGivenNumberInStock(int numero)
+    {
+        //recoremos toda la lista 
+        for (Product producto : stock){ 
+            //si es mmenos se muestra los detalles de ese producto 
+            if (producto.getQuantity()< numero){
+                printProductDetails();
+            }
+
+        }
     }
 }
