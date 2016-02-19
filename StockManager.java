@@ -115,4 +115,26 @@ public class StockManager
 
         }
     }
+    
+    /**
+     * permite encontrar productos por su nombre en vez de por su id. 
+     * En caso de no encontrarse una coincidencia exacta el método devuelve null.
+     */
+    public Product findProduct(String name)
+    {
+        Product producto = null;
+        int index = 0;
+        boolean encontrado = false;
+        while(!encontrado && index < stock.size()) {
+            if(stock.get(index).getName()==name){
+                producto = stock.get(index);
+                encontrado = true;
+            }
+            index++;
+        }
+
+        return producto; 
+    
+    
+    }
 }
