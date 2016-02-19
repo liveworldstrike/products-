@@ -21,8 +21,9 @@ public class StockManager
     }
 
     /**
-     * Add a product to the list.
-     * @param item The item to be added.
+     * Añade un producto a la lista 
+     * si este tiene la misma id que uno existente 
+     * salta error.
      */
     public void addProduct(Product item)
     {
